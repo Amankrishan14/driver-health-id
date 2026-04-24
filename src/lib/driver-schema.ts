@@ -30,7 +30,9 @@ export const driverSchema = z.object({
     .trim()
     .min(4, "Insurance ID is too short")
     .max(24, "Insurance ID is too long"),
-  bloodGroup: z.enum(bloodGroups, { message: "Select a blood group" }),
+  bloodGroup: z.enum(bloodGroups, {
+    errorMap: () => ({ message: "Select a blood group" }),
+  }),
   mobile: z
     .string()
     .trim()

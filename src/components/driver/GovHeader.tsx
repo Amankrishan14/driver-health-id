@@ -35,14 +35,12 @@ export function GovHeader() {
           >
             Verify Card
           </a>
-          <a
-            href="https://example.com"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/admin/login"
             className="rounded-md px-3 py-1.5 text-muted-foreground transition-smooth hover:text-foreground"
           >
-            Help
-          </a>
+            Admin
+          </Link>
         </nav>
       </div>
       <div className="h-1 bg-gradient-to-r from-primary via-gold to-primary" />

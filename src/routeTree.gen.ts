@@ -15,6 +15,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDriversRouteImport } from './routes/admin.drivers'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminAddDriverRouteImport } from './routes/admin.add-driver'
+import { Route as AdminEditIdRouteImport } from './routes/admin.edit.$id'
 
 const CardRoute = CardRouteImport.update({
   id: '/card',
@@ -46,6 +47,11 @@ const AdminAddDriverRoute = AdminAddDriverRouteImport.update({
   path: '/admin/add-driver',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminEditIdRoute = AdminEditIdRouteImport.update({
+  id: '/admin/edit/$id',
+  path: '/admin/edit/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/drivers': typeof AdminDriversRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/drivers': typeof AdminDriversRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/drivers': typeof AdminDriversRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/edit/$id': typeof AdminEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/drivers'
     | '/admin/login'
+    | '/admin/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/drivers'
     | '/admin/login'
+    | '/admin/edit/$id'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/drivers'
     | '/admin/login'
+    | '/admin/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminDriversRoute: typeof AdminDriversRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminEditIdRoute: typeof AdminEditIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAddDriverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/edit/$id': {
+      id: '/admin/edit/$id'
+      path: '/admin/edit/$id'
+      fullPath: '/admin/edit/$id'
+      preLoaderRoute: typeof AdminEditIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminDashboardRoute: AdminDashboardRoute,
   AdminDriversRoute: AdminDriversRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminEditIdRoute: AdminEditIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
